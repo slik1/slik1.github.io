@@ -841,6 +841,8 @@ article .yin-yang { position: absolute; left: -43px; z-index: 1; }
 /* Menu */
 #wrapper { -moz-transition: opacity 0.2s ease; -webkit-transition: opacity 0.2s ease; -ms-transition: opacity 0.2s ease; transition: opacity 0.2s ease; opacity: 1; padding-top: 7em; }
 
+#home #wrapper { padding-top: 0px; }
+
 #menu { -moz-transform: translateX(22em); -webkit-transform: translateX(22em); -ms-transform: translateX(22em); transform: translateX(22em); -moz-transition: -moz-transform 0.2s ease, visibility 0.2s; -webkit-transition: -webkit-transform 0.2s ease, visibility 0.2s; -ms-transition: -ms-transform 0.2s ease, visibility 0.2s; transition: transform 0.2s ease, visibility 0.2s; position: fixed; top: 0; right: 0; width: 22em; max-width: 80%; height: 100vh; -webkit-overflow-scrolling: touch; background: #38434d; color: #121C25; cursor: default; visibility: hidden; z-index: 10002; display: flex; align-items: center; justify-content: center; padding: 4em 1em; }
 
 #menu > .inner { -moz-transition: opacity 0.2s ease; -webkit-transition: opacity 0.2s ease; -ms-transition: opacity 0.2s ease; transition: opacity 0.2s ease; -webkit-overflow-scrolling: touch; width: 100%; opacity: 0; overflow-y: auto; }
