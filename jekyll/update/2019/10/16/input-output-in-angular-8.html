@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Parent/Child and Input/Output demonstration in Angular 8</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="@Input() example">
+    <link rel="stylesheet" href="/assets/css/main.css ">
+    <link rel="canonical" href="/jekyll/update/2019/10/16/input-output-in-angular-8.html">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+
+
+
+
+	<header id="header" class="site-header">
+		
+	
+			<!-- Logo -->
+			<a href="/" class="logo">
+				<!-- 				
+					<span class="symbol">
+	
+						
+	
+						<img src="/images/logo.svg" alt="" />
+	
+						
+	
+					</span> -->
+				<div class="title_container">
+					<!-- <span class="yin-yang"></span> -->
+					<span class="title">G</span>
+				</div>
+			</a>
+	
+			<a href="#menu" class="menu-wrapper">
+				<div class="hamburger-menu"></div>
+			</a>
+
+			<nav id="menu">
+	
+	<ul>
+		
+		 
+		 
+		
+		<li><a href="/">Home</a></li>
+		 
+		 
+
+		
+
+		
+
+		<li><a href="/elements.html">Elements</a></li>
+
+		 
+
+		
+
+		<li><a href="/generic.html">Generic Test</a></li>
+
+		 
+
+		
+
+		<li><a href="/"></a></li>
+
+		 
+
+		 
+	</ul>
+	<!-- <a href="#menu" class="close icon fa-times">&nbsp;</a> -->
+</nav>
+
+	</header>
+
+<div id="wrapper">
+
+
+
+	
+
+	<!-- Main -->
+	<div id="main">
+
+		
+			<div class="inner">
+			
+ 
+    
+    
+<!-- Main -->
+
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+				<span class="date">October 16, 2019</span>
+			<h1>Parent/Child and Input/Output demonstration in Angular 8</h1>
+		</header>
+		
+		<p><h2 id="input-example">@Input() example</h2>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">ng</span> <span class="nx">g</span> <span class="nx">m</span> <span class="nx">parent</span>
+<span class="nx">ng</span> <span class="nx">g</span> <span class="nx">c</span> <span class="nx">parent</span>
+<span class="nx">ng</span> <span class="nx">g</span> <span class="nx">c</span> <span class="nx">parent</span><span class="o">/</span><span class="nx">child</span></code></pre></figure>
+
+<p>ng g m parent (generates a new module called parent in a folder called /parent/)
+ng g c parent (generates a new component called parent in the already created folder /parent/)
+ng g c parent/child (generates a new component called child in the /parent/child/ folder)</p>
+
+<p>Now we have a parent module and component, and a child component within the parent folder</p>
+
+<p>Let’s wire all this up!</p>
+
+<p>First let’s add the new parent component to the exports array in the parent module so it is accessible to whichever component calls it! (parent.module.ts):</p>
+
+<figure class="highlight"><pre><code class="language-typescript" data-lang="typescript"><span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+	<span class="na">declarations</span><span class="p">:</span> <span class="p">[</span><span class="nx">ParentComponent</span><span class="p">,</span> <span class="nx">ChildComponent</span><span class="p">],</span>
+	<span class="na">exports</span><span class="p">:</span> <span class="p">[</span><span class="nx">ParentComponent</span><span class="p">],</span>
+	<span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+		<span class="nx">CommonModule</span>
+	<span class="p">]</span>
+<span class="p">})</span></code></pre></figure>
+
+<p>Next we want to tell our app module about our new parent module so let’s edit app.module.ts:</p>
+
+<figure class="highlight"><pre><code class="language-typescript" data-lang="typescript"><span class="k">import</span> <span class="p">{</span> <span class="nx">ParentModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./parent/parent.module</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+	<span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+		<span class="nx">AppComponent</span>
+	<span class="p">],</span>
+	<span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+		<span class="nx">BrowserModule</span><span class="p">,</span>
+		<span class="nx">AppRoutingModule</span><span class="p">,</span>
+		<span class="nx">ParentModule</span>
+	<span class="p">],</span>
+	<span class="na">providers</span><span class="p">:</span> <span class="p">[],</span>
+	<span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span><span class="p">{</span> <span class="p">}</span></code></pre></figure>
+
+<p>Next let’s clear out the prepopulated data in the app.component.html file and only add the selector for our parent component:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;app-parent&gt;&lt;/app-parent&gt;</span></code></pre></figure>
+
+<p>Now when the app first loads, it will render the parent component</p>
+
+<p>Since our parent component will be the container and the boss of all the data for its child components, let’s add some data to the parent component (parent.component.ts):</p>
+
+<figure class="highlight"><pre><code class="language-typescript" data-lang="typescript"><span class="k">export</span> <span class="kd">class</span> <span class="nx">ParentComponent</span> <span class="kr">implements</span> <span class="nx">OnInit</span><span class="p">{</span>
+	
+	<span class="nl">parentData</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
+
+	<span class="nx">ngOnInit</span><span class="p">(){</span>
+
+		<span class="k">this</span><span class="p">.</span><span class="nx">parentData</span> <span class="o">=</span> <span class="p">{</span>
+			<span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Coolness</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">description</span><span class="p">:</span> <span class="dl">'</span><span class="s1">This is a really cool description</span><span class="dl">'</span>
+		<span class="p">}</span>
+
+	<span class="p">}</span>
+
+
+<span class="p">}</span></code></pre></figure>
+
+<p>Great, now we have some data to share with our child component!</p>
+
+<p>Let’s add the child component selector to the parent template and give it an input property to pass the data from the parent into the child (parent.component.html):</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;app-child</span> <span class="na">[parentData]=</span><span class="s">"parentData"</span><span class="nt">&gt;&lt;/app-child&gt;</span></code></pre></figure>
+
+<p>Now we need to give the child component an input property so it can retrieve the data passed from the parent (child.component.ts):</p>
+
+<figure class="highlight"><pre><code class="language-typescript" data-lang="typescript"><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">Input</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">ChildComponent</span> <span class="kr">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+	
+	<span class="p">@</span><span class="nd">Input</span><span class="p">()</span> <span class="nx">parentData</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>Let’s actually use some of the data to display in the child component by editing the child.component.html template:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;&lt;/p&gt;</span></code></pre></figure>
+
+<p>So now if we save and load the page, we will see the data passed from the parent to the child and rendering in the child.component.html file!</p>
+
+<p>Awesome!</p>
+
+<p>That’s how an @Input() property works to pass data down into a child component</p>
+
+<h2 id="output-example">@Output() example</h2>
+
+<p>Let’s check out how to pass data back up from the child to the parent component using an @Output() property on the child</p>
+
+<p>So first let’s edit the child.component.ts file to give it an output property and assign that to an event emitter:</p>
+
+<figure class="highlight"><pre><code class="language-typescript" data-lang="typescript"><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">Input</span><span class="p">,</span> <span class="nx">Output</span><span class="p">,</span> <span class="nx">EventEmitter</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">ChildComponent</span> <span class="kr">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+	
+	<span class="p">@</span><span class="nd">Input</span><span class="p">()</span> <span class="nx">parentData</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
+	<span class="p">@</span><span class="nd">Output</span><span class="p">()</span> <span class="nx">childData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventEmitter</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">();</span>
+
+
+	<span class="nx">emitData</span><span class="p">(){</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">parentData</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Super Cool</span><span class="dl">'</span><span class="p">;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">childData</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parentData</span><span class="p">);</span>
+	<span class="p">}</span>
+
+
+
+<span class="p">}</span></code></pre></figure>
+
+<p>So now, whenever the method emitData() is called from within the child.component.html template, it will emit data back up to the parent component.</p>
+
+<p>Let’s bind that very method to a button click within the child component. (child.component.html):</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;&lt;/p&gt;</span>
+
+<span class="nt">&lt;button</span> <span class="na">(click)=</span><span class="s">"emitData()"</span><span class="nt">&gt;</span>Change name<span class="nt">&lt;/button&gt;</span></code></pre></figure>
+
+<p>And also update the parent.component.html to subscribe to the output property of the child component. Then we can see that data here will change from an output property change on the child component:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">This text is part of parent.component.html: <span class="nt">&lt;br&gt;</span>
+
+
+<span class="nt">&lt;br&gt;</span>
+
+This text is part of child.component.html: <span class="nt">&lt;br&gt;</span>
+<span class="nt">&lt;app-child</span> <span class="na">[parentData]=</span><span class="s">"parentData"</span> <span class="na">(emitData)=</span><span class="s">"childChanged($event)"</span><span class="nt">&gt;&lt;/app-child&gt;</span></code></pre></figure>
+
+<p>So when the emitData function is fired on the child component, we call a function in the parent component to respond to the emitted event! We must pass in the $event object into the parent’s function that is responding to the child event to get to the data emitted.</p>
+
+<p>Update parent.component.ts to add the function to respond to the child event that is emitted:</p>
+
+<figure class="highlight"><pre><code class="language-typescript" data-lang="typescript"><span class="nx">childChanged</span><span class="p">(</span><span class="nx">parentData</span><span class="p">:</span> <span class="nx">any</span><span class="p">){</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">parentData</span> <span class="o">=</span> <span class="nx">parentData</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Boom! A very basic example of using @Input() and @Output() properties to pass data between parent and child components in Angular 8!</p>
+
+<p>The git repo for this project can be located at: 
+<a href="https://github.com/slik1/angular-8-input-output-basics">https://github.com/slik1/angular-8-input-output-basics</a></p>
+</p>
+	</div>
+</section>
+
+<div class="pagination">
+		
+		<a href="#" class="top">Top</a>
+		
+		  <a href="/jekyll/update/2019/09/21/coolness-3.html" class="right arrow">&#8594;</a>
+		
+	  
+		
+	  </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+	<div class="inner">
+		<section>
+			<h2>Follow</h2>
+			<ul class="icons">
+				
+				<li><a href="https://www.linkedin.com/in/gary-saunders-sd" class="icon style2 fa-linkedin"><span class="label">Linkedin</span></a></li>
+				
+				
+				
+				
+				
+				
+				<li><a href="https://github.com/slik1" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+				
+				
+				
+				
+				<li><a href="mailto:youremailaddress@gmail.com" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+				
+			</ul>
+		</section>
+		<ul class="copyright">
+			<li>&copy; G. All rights reserved</li>
+			
+		</ul>
+	</div>
+</footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/skel.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="/assets/js/main.js"></script>
+
+
+</body>
+
+</html>
