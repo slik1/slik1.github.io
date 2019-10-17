@@ -715,7 +715,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 
 .tiles article > .image img { display: block; width: 100%; height: 100%; }
 
-.tiles article > .image:before { -moz-pointer-events: none; -webkit-pointer-events: none; -ms-pointer-events: none; pointer-events: none; -moz-transition: background-color 0.5s ease, opacity 0.5s ease; -webkit-transition: background-color 0.5s ease, opacity 0.5s ease; -ms-transition: background-color 0.5s ease, opacity 0.5s ease; transition: background-color 0.5s ease, opacity 0.5s ease; content: ''; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 1.0; z-index: 1; opacity: 0.8; }
+.tiles article > .image:before { -moz-pointer-events: none; -webkit-pointer-events: none; -ms-pointer-events: none; pointer-events: none; -moz-transition: background-color 0.5s ease, opacity 0.5s ease; -webkit-transition: background-color 0.5s ease, opacity 0.5s ease; -ms-transition: background-color 0.5s ease, opacity 0.5s ease; transition: background-color 0.5s ease, opacity 0.5s ease; content: ''; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 1; z-index: 1; opacity: 0.8; }
 
 .tiles article > .image:after { -moz-pointer-events: none; -webkit-pointer-events: none; -ms-pointer-events: none; pointer-events: none; -moz-transition: opacity 0.5s ease; -webkit-transition: opacity 0.5s ease; -ms-transition: opacity 0.5s ease; transition: opacity 0.5s ease; content: ''; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 0.25px%3B stroke: %23ffffff%3B %7D%3C/style%3E%3Cline x1='0' y1='0' x2='100' y2='100' /%3E%3Cline x1='100' y1='0' x2='0' y2='100' /%3E%3C/svg%3E"); background-position: center; background-repeat: no-repeat; background-size: 100% 100%; opacity: 0.25; z-index: 2; }
 
@@ -736,8 +736,6 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 .tiles article.style5 > .image:before { background-color: #ae85ca; }
 
 .tiles article.style6 > .image:before { background-color: #8499e7; }
-
-* + .tiles { margin-top: 2em; }
 
 body.is-loading .tiles article { -moz-transform: scale(0.9); -webkit-transform: scale(0.9); -ms-transform: scale(0.9); transform: scale(0.9); opacity: 0; }
 
