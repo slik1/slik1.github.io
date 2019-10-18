@@ -454,9 +454,7 @@ sup { font-size: 0.8em; position: relative; top: -0.5em; }
 
 blockquote { border-left: solid 4px #c9c9c9; font-style: italic; margin: 0 0 2em 0; padding: 0.5em 0 0.5em 2em; }
 
-code { background: rgba(144, 144, 144, 0.075); border-radius: 4px; border: solid 1px #c9c9c9; font-family: "Courier New", monospace; font-size: 0.9em; margin: 0 0.25em; padding: 0.25em 0.65em; }
-
-pre { -webkit-overflow-scrolling: touch; font-family: "Courier New", monospace; font-size: 0.9em; margin: 0 0 2em 0; }
+pre { -webkit-overflow-scrolling: touch; font-family: "Courier New", monospace; font-size: 0.9em; margin: 0 0 2em 0; border-radius: 4px; }
 
 pre code { display: block; line-height: 1.75; padding: 1em 1.5em; overflow-x: auto; }
 
@@ -775,7 +773,9 @@ span.date { color: #999; font-family: "SF Mono", "Fira Code", "Fira Mono", "Robo
 
 body.is-loading .hero { -moz-transform: scale(0.9); -webkit-transform: scale(0.9); -ms-transform: scale(0.9); transform: scale(0.9); opacity: 0; }
 
-#header { padding: 8em 0 0.1em 0 ; }
+body.is-loading #header { -moz-transform: scale(0.9); -webkit-transform: scale(0.9); -ms-transform: scale(0.9); transform: scale(0.9); opacity: 0; }
+
+#header { padding: 8em 0 0.1em 0 ; -moz-transition: -moz-transform 0.5s ease, opacity 0.5s ease; -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease; -ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease; transition: transform 0.5s ease, opacity 0.5s ease; }
 
 #header.hero { height: 100vh; display: -moz-flex; display: -webkit-flex; display: -ms-flex; display: flex; -moz-align-items: center; -webkit-align-items: center; -ms-align-items: center; align-items: center; -moz-justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; justify-content: center; padding: 1em; background-color: #F4F2E7 !important; }
 
@@ -903,7 +903,7 @@ body.is-menu-visible #menu .close { -moz-transform: scale(1.0) rotate(0deg); -we
 .black { color: #000 !important; }
 
 /* Main */
-.pagination { position: relative; display: inline-block; width: 100%; padding: 22px; margin: 20px; }
+.pagination { position: relative; display: inline-block; width: 100%; padding: 22px; margin: 20px 0; }
 
 .pagination .arrow { position: absolute; }
 
@@ -914,7 +914,7 @@ body.is-menu-visible #menu .close { -moz-transform: scale(1.0) rotate(0deg); -we
 .pagination .top { position: absolute; left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%); }
 
 /* Footer */
-#footer { padding: 5em 0 6em 0 ; background-color: #38434d; }
+#footer { padding: 2em 0 1em 0; background-color: #38434d; }
 
 #footer > .inner { display: -moz-flex; display: -webkit-flex; display: -ms-flex; display: flex; -moz-flex-wrap: wrap; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap; -moz-flex-direction: row; -webkit-flex-direction: row; -ms-flex-direction: row; flex-direction: row; }
 
@@ -924,7 +924,7 @@ body.is-menu-visible #menu .close { -moz-transform: scale(1.0) rotate(0deg); -we
 
 #footer > .inner section:nth-child(2) { width: calc(33% - 2.5em); margin-left: 2.5em; }
 
-#footer > .inner .copyright { width: 100%; padding: 0; margin-top: 5em; list-style: none; font-size: 0.8em; color: rgba(140, 151, 163, 0.5); }
+#footer > .inner .copyright { width: 100%; padding: 0; margin-top: 3em; margin-bottom: 1em; list-style: none; font-size: 0.8em; color: rgba(140, 151, 163, 0.5); }
 
 #footer > .inner .copyright a { color: inherit; }
 
@@ -958,7 +958,7 @@ body.is-menu-visible #menu .close { -moz-transform: scale(1.0) rotate(0deg); -we
 
 code { font-family: 'Bitstream Vera Sans Mono','Courier', monospace; }
 
-.highlight pre { background-color: #272822; }
+.highlight pre { background-color: #272832; }
 
 .highlight .hll { background-color: #272822; }
 
