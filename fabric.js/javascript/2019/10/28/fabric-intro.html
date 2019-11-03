@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Intro to Fabric.js Canvas Framework</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="I started looking into Fabric.js awhile ago as a solution for a web app to allow plotting points onto a user-submitted image. After researching the topic, it...">
+    <link rel="stylesheet" href="/assets/css/main.css ">
+    <link rel="canonical" href="/fabric.js/javascript/2019/10/28/fabric-intro.html">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+
+
+
+
+	<header id="header" class="site-header">
+		
+	
+			<!-- Logo -->
+			<a href="/" class="logo">
+				<!-- 				
+					<span class="symbol">
+	
+						
+	
+						<img src="/images/logo.svg" alt="" />
+	
+						
+	
+					</span> -->
+				<div class="title_container">
+					<!-- <span class="yin-yang"></span> -->
+					<span class="title">G</span>
+				</div>
+			</a>
+	
+			<a href="#menu" class="menu-wrapper">
+				<div class="hamburger-menu"></div>
+			</a>
+
+			<nav id="menu">
+	
+	<ul>
+		
+		 
+		 
+		
+		<li><a href="/">Home</a></li>
+		 
+		 
+
+		
+
+		
+
+		<li><a href="/about.html">About</a></li>
+
+		 
+
+		
+
+		<li><a href="/blog.html">Blog</a></li>
+
+		 
+
+		
+
+		<li><a href="/"></a></li>
+
+		 
+
+		 
+	</ul>
+	<!-- <a href="#menu" class="close icon fa-times">&nbsp;</a> -->
+</nav>
+
+	</header>
+
+<div id="wrapper">
+
+
+
+	
+
+	<!-- Main -->
+	<div id="main">
+
+		
+			<div class="inner">
+			
+ 
+    
+    
+<!-- Main -->
+
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+				<span class="date">October 28, 2019</span>
+			<h1>Intro to Fabric.js Canvas Framework</h1>
+		</header>
+		
+		<p><p>I started looking into Fabric.js awhile ago as a solution for a web app to allow plotting points onto a user-submitted image. After researching the topic, it seems to be the best solution for easily manipulating an HTML5 canvas element, and things drawn onto it, in an object-oriented way. I wanted to document some of my notes while researching the documentation ( much of the following information can be found on the <a href="http://fabricjs.com">fabric.js website</a> )</p>
+
+<h2>So what is Fabric.js? </h2>
+
+<p>Well, from its website it mentions: ‘It’s a powerful JavaScript library that makes working with the HTML5 Canvas a breeze. Fabric provides a missing object model for canvas, as well as an SVG parser, layer of interactivity and other tools.’</p>
+
+<h2>Cool, so why should I use it?</h2>
+
+<p>It provides a simple but powerful object model on top of native methods. It takes care of canvas state and rendering, and lets us work with “objects” directly. With native elements, we operate on context - an object representing the entire canvas bitmap. In Fabric, we operate on objects - instantiate them, change their properties, and add them to the canvas.</p>
+
+<p>Here’s a list of properties available on “objects” we create on the canvas:</p>
+
+<h3>Positioning</h3>
+<ul>
+    <li>left</li>
+    <li>top</li>
+</ul>
+
+<h3>Dimensions</h3>
+<ul>
+    <li>width</li>
+    <li>height</li>
+</ul>
+
+<h3>Rendering</h3>
+<ul>
+    <li>fill</li>
+    <li>opacity</li>
+    <li>stroke</li>
+    <li>strokeWidth</li>
+</ul>
+
+<h3>Scaling and Rotation</h3>
+<ul>
+    <li>scaleX</li>
+    <li>scaleY</li>
+    <li>angle</li>
+</ul>
+
+<h3>Flipping</h3>
+<ul>
+    <li>flipX</li>
+    <li>flipY</li>
+</ul>
+
+<h3>Skewing</h3>
+<ul>
+    <li>skewX</li>
+    <li>skewY</li>
+
+</ul>
+
+<h2>Heirarchy and Inheritance</h2>
+
+<p>Most of the objects inherit from a root <code>fabric.Object</code>.
+This inheritance allows us to define methods on <code>fabric.Object</code> and share them among all child “classes”.</p>
+
+<p>For example, if you wanted to add some method that would be available to all fabric objects, you could do something like the following:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">fabric</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">someMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">cool</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// .someMethod() is available on all fabric objects now!</span>
+
+<span class="kd">var</span> <span class="nx">rect</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">fabric</span><span class="p">.</span><span class="nx">Rect</span><span class="p">();</span>
+<span class="nx">rect</span><span class="p">.</span><span class="nx">someMethod</span><span class="p">();</span> </code></pre></figure>
+
+<h2>Canvas</h2>
+
+<p>We create a new canvas instance with <code>var canvas = new fabric.Canvas('c');</code> where the <code>('c')</code> refers to the DOM canvas element’s ID.</p>
+
+<p>The <code>fabric.Canvas</code> serves as a wrapper around the <code>&lt;canvas&gt;</code> element and is responsible for managing all of the fabric objects on that particular canvas.</p>
+
+<h2>Events</h2>
+
+<p>I’m going to skip a couple other basic topics and jump to events. Fabric provides an extensive event system, starting from low-level “mouse” events to high-level object ones.</p>
+
+<p>These events allow us to tap into different moments of various actions happening on the canvas.</p>
+
+<p>Here’s an example to see when the mouse was pressed:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">fabric</span><span class="p">.</span><span class="nx">Canvas</span><span class="p">(</span><span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">canvas</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">mouse:down</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">e</span><span class="p">.</span><span class="nx">clientX</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span><span class="p">);</span>
+<span class="p">})</span></code></pre></figure>
+
+<p>The event handler receives an options object, which has 2 properties:</p>
+
+<p>e - original event
+target - a clicked object on canvas (if any)</p>
+
+<p>To be continued….</p>
+</p>
+	</div>
+</section>
+
+<div class="pagination">
+		
+		<a href="#" class="top">Top</a>
+		
+		  <a href="/angular-8/2019/10/16/input-output-in-angular-8.html" class="right arrow" title="@Input() and @Output() in Angular 8">Older &#8594;</a>
+		
+	  
+		
+		
+
+
+
+
+	  </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+	<div class="inner">
+		<section>
+			
+			<ul class="icons">
+				
+				<li><a href="https://www.linkedin.com/in/gary-saunders-sd" class="icon style2 fa-linkedin"><span class="label">Linkedin</span></a></li>
+				
+				
+				
+				
+				
+				
+				<li><a href="https://github.com/slik1" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+				
+				
+				
+				
+				<li><a href="mailto:youremailaddress@gmail.com" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+				
+			</ul>
+		</section>
+		
+	</div>
+</footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/skel.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="/assets/js/main.js"></script>
+
+
+</body>
+
+</html>

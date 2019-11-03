@@ -7,13 +7,13 @@
 <html>
 
 <head>
-    <title>Parent/Child and Input/Output demonstration in Angular 8</title>
+    <title>@Input() and @Output() in Angular 8</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="@Input() example">
+    <meta name="description" content="Let’s run through a little demo to illustrate how the container/presentation pattern works in Angular using the @Input() and @Output() properties.">
     <link rel="stylesheet" href="/assets/css/main.css ">
-    <link rel="canonical" href="/jekyll/update/2019/10/16/input-output-in-angular-8.html">
+    <link rel="canonical" href="/angular-8/2019/10/16/input-output-in-angular-8.html">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 </head>
 
@@ -65,13 +65,13 @@
 
 		
 
-		<li><a href="/elements.html">Elements</a></li>
+		<li><a href="/about.html">About</a></li>
 
 		 
 
 		
 
-		<li><a href="/generic.html">Generic Test</a></li>
+		<li><a href="/blog.html">Blog</a></li>
 
 		 
 
@@ -111,18 +111,29 @@
 	<div class="inner">
 		<header class="major">
 				<span class="date">October 16, 2019</span>
-			<h1>Parent/Child and Input/Output demonstration in Angular 8</h1>
+			<h1>@Input() and @Output() in Angular 8</h1>
 		</header>
 		
-		<p><h2 id="input-example">@Input() example</h2>
+		<p><p>Let’s run through a little demo to illustrate how the container/presentation pattern works in Angular using the @Input() and @Output() properties.</p>
+
+<p><br /></p>
+
+<h2 id="input-example">@Input() example</h2>
+
+<p>First let’s generate some angular goodies (you will need the Angular CLI installed)</p>
 
 <figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">ng</span> <span class="nx">g</span> <span class="nx">m</span> <span class="nx">parent</span>
 <span class="nx">ng</span> <span class="nx">g</span> <span class="nx">c</span> <span class="nx">parent</span>
 <span class="nx">ng</span> <span class="nx">g</span> <span class="nx">c</span> <span class="nx">parent</span><span class="o">/</span><span class="nx">child</span></code></pre></figure>
 
-<p>ng g m parent (generates a new module called parent in a folder called /parent/)
-ng g c parent (generates a new component called parent in the already created folder /parent/)
-ng g c parent/child (generates a new component called child in the /parent/child/ folder)</p>
+<p>This will generate 3 things: a new module called parent, a new component called parent, and a new component in the <code class="highlighter-rouge">parent</code> folder called child.</p>
+
+<h3>Explanation</h3>
+<ul>
+<li>ng g m parent (generates a new module called parent in a folder called /parent/)</li>
+<li>ng g c parent (generates a new component called parent in the already created folder /parent/)</li>
+<li>ng g c parent/child (generates a new component called child in a /parent/child/ folder)</li>
+</ul>
 
 <p>Now we have a parent module and component, and a child component within the parent folder</p>
 
@@ -198,14 +209,16 @@ ng g c parent/child (generates a new component called child in the /parent/child
 
 <p>Let’s actually use some of the data to display in the child component by editing the child.component.html template:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;&lt;/h1&gt;</span>
-<span class="nt">&lt;p&gt;&lt;/p&gt;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>{{ parentData.name }}<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>{{ parentData.description }}<span class="nt">&lt;/p&gt;</span></code></pre></figure>
 
 <p>So now if we save and load the page, we will see the data passed from the parent to the child and rendering in the child.component.html file!</p>
 
 <p>Awesome!</p>
 
 <p>That’s how an @Input() property works to pass data down into a child component</p>
+
+<p><br /></p>
 
 <h2 id="output-example">@Output() example</h2>
 
@@ -234,18 +247,17 @@ ng g c parent/child (generates a new component called child in the /parent/child
 
 <p>Let’s bind that very method to a button click within the child component. (child.component.html):</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;&lt;/h1&gt;</span>
-<span class="nt">&lt;p&gt;&lt;/p&gt;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>{{ parentData.name }}<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>{{ parentData.description }}<span class="nt">&lt;/p&gt;</span>
 
 <span class="nt">&lt;button</span> <span class="na">(click)=</span><span class="s">"emitData()"</span><span class="nt">&gt;</span>Change name<span class="nt">&lt;/button&gt;</span></code></pre></figure>
 
 <p>And also update the parent.component.html to subscribe to the output property of the child component. Then we can see that data here will change from an output property change on the child component:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">This text is part of parent.component.html: <span class="nt">&lt;br&gt;</span>
-
-
+<figure class="highlight"><pre><code class="language-html" data-lang="html">This text is part of parent.component.html: 
 <span class="nt">&lt;br&gt;</span>
-
+{ { parent.name } }
+<span class="nt">&lt;br&gt;</span>
 This text is part of child.component.html: <span class="nt">&lt;br&gt;</span>
 <span class="nt">&lt;app-child</span> <span class="na">[parentData]=</span><span class="s">"parentData"</span> <span class="na">(emitData)=</span><span class="s">"childChanged($event)"</span><span class="nt">&gt;&lt;/app-child&gt;</span></code></pre></figure>
 
@@ -267,12 +279,19 @@ This text is part of child.component.html: <span class="nt">&lt;br&gt;</span>
 
 <div class="pagination">
 		
+		  <a href="/fabric.js/javascript/2019/10/28/fabric-intro.html" class="left arrow" title="Intro to Fabric.js Canvas Framework">&#8592; Newer</a>
+		
 		<a href="#" class="top">Top</a>
 		
-		  <a href="/jekyll/update/2019/09/21/coolness-3.html" class="right arrow">&#8594;</a>
+		  <a href="/drupal/services/api/2019/09/21/token-and-cookie-authentication.html" class="right arrow" title="Token and Cookie Authentication">Older &#8594;</a>
 		
 	  
 		
+		
+
+
+
+
 	  </div>
 
     </div>
@@ -282,7 +301,7 @@ This text is part of child.component.html: <span class="nt">&lt;br&gt;</span>
 <footer id="footer">
 	<div class="inner">
 		<section>
-			<h2>Follow</h2>
+			
 			<ul class="icons">
 				
 				<li><a href="https://www.linkedin.com/in/gary-saunders-sd" class="icon style2 fa-linkedin"><span class="label">Linkedin</span></a></li>
@@ -301,10 +320,7 @@ This text is part of child.component.html: <span class="nt">&lt;br&gt;</span>
 				
 			</ul>
 		</section>
-		<ul class="copyright">
-			<li>&copy; G. All rights reserved</li>
-			
-		</ul>
+		
 	</div>
 </footer>
 
